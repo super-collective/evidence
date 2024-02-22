@@ -1,0 +1,165 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema#",
+  "version": {
+    "major": 1,
+    "minor": 0,
+    "patch": 0
+  },
+  "title": "Fellowship Evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "name": {
+      "title": "Name of the reporter",
+      "type": "string",
+      "description": "Legal name or otherwise unique alias"
+    },
+    "github": {
+      "title": "GitHub handle of the reporter",
+      "type": "string"
+    },
+    "collective": {
+      "title": "Collective",
+      "description": "The collective that this report is for",
+      "oneOf": [
+        { "const": "Fellowship" }
+      ]
+    },
+    "report_date": {
+      "type": "string",
+      "title": "Date when this report was filled",
+      "format": "date"
+    },
+    "report_period": {
+      "type": "object",
+      "title": "Report Period",
+      "description": "The period that this report covers",
+      "additionalProperties": false,
+      "properties": {
+        "start_date": {
+          "title": "Fist inclusive date that this report covers",
+          "type": "string",
+          "format": "date"
+        },
+        "end_date": {
+          "title": "Last inclusive date that this report covers",
+          "type": "string",
+          "format": "date"
+        }
+      },
+      "required": [
+        "start_date",
+        "end_date"
+      ]
+    },
+    "address": {
+      "type": "string",
+      "title": "On-Chain address of the reporter"
+    },
+    "wish": {
+      "title": "Whether to retain rank or promote. Both contains their rank resp.",
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "retain": {
+              "title": "Retain this rank",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "retain"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "promote": {
+              "title": "Promote to this rank",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "promote"
+          ]
+        }
+      ]
+    },
+    "evidence_categories": {
+      "title": "Evidence categories covered in this report",
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "development": {
+                "title": "Development",
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "sdk",
+                    "runtime",
+                    "tooling",
+                    "other"
+                  ]
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "title": "Pieces of evidence that support the report",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "Title of the evidence"
+          },
+          "tasks": {
+            "type": "array",
+            "title": "Tasks of this evidence",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "title": "Title of the task"
+                },
+                "links": {
+                  "type": "array",
+                  "title": "Links to the task",
+                  "items": {
+                    "type": "string",
+                    "format": "uri"
+                  }
+                }
+              },
+              "required": [
+                "title",
+                "links"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "name",
+    "address",
+    "collective",
+    "wish",
+    "report_date",
+    "report_period",
+    "evidence_categories",
+    "evidence"
+  ]
+}
