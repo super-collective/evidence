@@ -4,9 +4,10 @@ Explores approaches for storing work evidence of Polkadot Collectives in a publi
 
 ## Structure
 
-This repo uses a relational data schema through symlinks. All evidence report file can be found in the `evidence` directory.
+This repo uses a relational data schema through symlinks. All evidence report file can be found in the `evidence` directory. 
+They follow the naming scheme `n.evidence` with `n` being a 32-bit unsigned decimal integer.
 
-The information is augmented by the sub-folder `by-date` and `by-reporter`. Those allow structured access to the evidence reports without additional tooling.
+The information is augmented by the sub-folder `by_date` and `by_reporter`. Those allow structured access to the evidence reports without additional tooling.
 
 The full folder structure is as follows:
 
@@ -44,8 +45,6 @@ Be sure to configure the JSON schema into your editor to get documentation and h
 ```sh
 collective schema evidence -o evidence_schema.json
 ```
-
-The filename must be unique and in the form `n.evidence` for `n` being a non-negative decimal integer with at most 9 digits.
 
 ### Updating the Indices
 
