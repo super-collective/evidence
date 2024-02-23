@@ -15,13 +15,13 @@ The full folder structure is as follows:
 - evidence
   - *.evidence # All evidence reports
   - by_date
-	- 2024
-	  - 01
-		- 01
-		  - *.evidence # Symlinks
+    - YEAR
+      - MONTH
+        - DAY
+          - *.evidence # Symlinks
   - by_reporter
-	- alice
-	  - *.evidence # Symlinks
+    - NAME
+      - *.evidence # Symlinks
 ```
 
 ## Adding Evidence
