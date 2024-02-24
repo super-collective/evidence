@@ -1,0 +1,22 @@
+name: Check Evidence
+on:
+  - push
+  - pull_request
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Clone
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Validate files
+      run: |
+        collective check evidence
+
+    - name: Check Index Links
+      run: |
+          collective index evidence --reindex
+          git diff --exit-code
