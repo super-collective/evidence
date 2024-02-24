@@ -1,7 +1,9 @@
 name: Check Evidence
 on:
-  - push
-  - pull_request
+    push:
+        branches: [ master ]
+    pull_request:
+    workflow_dispatch:
 
 jobs:
   validate:
