@@ -24,9 +24,9 @@ jobs:
     - name: Check Index Links
       run: |
         collective index evidence
-        [ -z "$(git status --porcelain)" ] && || (echo "Please run 'collective index evidence' and commit the changes." && exit 1)
+        [ -z "$(git status --porcelain)" ] || (echo "Please run 'collective index evidence' and commit the changes." && exit 1)
 
     - name: Check Modified Index Links
       run: |
         collective index evidence --reindex
-        [ -z "$(git status --porcelain)" ] && || (echo "Please run 'collective index evidence --reindex' and commit the changes." && exit 1)
+        [ -z "$(git status --porcelain)" ] || (echo "Please run 'collective index evidence --reindex' and commit the changes." && exit 1)
