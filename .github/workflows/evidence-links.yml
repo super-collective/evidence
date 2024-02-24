@@ -24,9 +24,22 @@ jobs:
     - name: Check Index Links
       run: |
         collective index evidence
-        git diff --exit-code || (echo "Index links are not up to date. Please run 'collective index evidence' and commit the changes." && exit 1)
+        git diff --exit-code || ()
+
+        if [ -z "$(git status --porcelain)" ]; then 
+            # Working directory clean
+        else 
+            echo "Index links are not up to date. Please run 'collective index evidence' and commit the changes."
+            exit 1
+        fi
 
     - name: Check Modified Index Links
       run: |
           collective index evidence --reindex
-          git diff --exit-code || (echo "Index links are not up to date. Please run 'collective index evidence --reindex' and commit the changes." && exit 1)
+          
+          if [ -z "$(git status --porcelain)" ]; then 
+            # Working directory clean
+          else 
+            echo "Index links are not up to date. Please run 'collective index evidence --reindex' and commit the changes."
+            exit 1
+          fi
