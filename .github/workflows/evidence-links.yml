@@ -12,6 +12,9 @@ jobs:
       with:
         fetch-depth: 0
 
+    - name: Install CLI
+      run: cargo install --git https://github.com/super-collective/collective-cli --locked -q
+
     - name: Validate files
       run: |
         collective check evidence
